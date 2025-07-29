@@ -1,23 +1,25 @@
-export interface User {
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+
+export type ButtonVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'ghost';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
+  children: ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  loading?: boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  ripple?: boolean;
+  ariaLabel?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface RippleEffect {
+  x: number;
+  y: number;
+  size: number;
   id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-  joinedDate: string;
-}
-
-export interface ApiResponse<T> {
-  data: T;
-  status: 'success' | 'error';
-  message?: string;
-}
-
-export interface LoadingState {
-  isLoading: boolean;
-  error: string | null;
-}
-
-export interface GreetingProps {
-  user?: User;
-  timeOfDay: 'morning' | 'afternoon' | 'evening';
 }
